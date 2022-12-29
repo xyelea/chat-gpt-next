@@ -5,13 +5,13 @@ function Loader({ loading }) {
   return (
     <Comment
       visible={loading}
-      height="80"
-      width="80"
+      height="60"
+      width="60"
       ariaLabel="comment-loading"
       wrapperStyle={{}}
       wrapperClass="comment-wrapper"
       color="#fff"
-      backgroundColor="#F4442E"
+      backgroundColor="#40414f"
     />
   );
 }
