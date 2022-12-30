@@ -19,3 +19,12 @@ body {
 .message::-webkit-scrollbar {
   display: none;
 }
+.styles_scrollable-div__prSCv::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge add Firefox */
+.styles_scrollable-div__prSCv {
+  -ms-overflow-style: none;
+  scrollbar-width: none; /* Firefox */
+}

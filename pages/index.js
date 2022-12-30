@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Loader from "../components/Loader";
+import ScrollableFeed from "react-scrollable-feed";
 
 export default function Home() {
   const [inputValue, setInputValue] = useState("");
@@ -78,75 +79,71 @@ export default function Home() {
   }, [responseData]);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    console.log("heoo", messagesEndRef);
-    // messagesEndRef.current.
-    // messagesEndRef?.current?.scrollTop = messagesEndRef?.current?.scrollHeight;
-  }, [inputItems, inputValue, responseData]);
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  }, [inputItems, responseData]);
 
   return (
     <div className="app w-full h-screen bg-[#343541] flex items-center justify-between flex-col">
       {/* Chat Render here */}
-      <div
-        // ref={messagesEndRef}
-        className="chat_container flex-1 w-full h-full overflow-y-scroll flex flex-col gap-3 pb-5 scroll-smooth"
-      >
-        {inputItems?.map((item) => (
-          <div key={item.id}>
-            {item.name !== "" && (
-              <div className={`w-full p-[15px] ${true && "bg-[#40414f]"}`}>
-                <div className="w-full max-w-[1280px] mx-auto flex flex-row items-start gap-[10px]">
-                  <div className="w-[36px] h-[36px] rounded-md bg-[#5436da] flex justify-center items-center">
-                    <img
-                      src="assets/bot.svg"
-                      alt={`"bot"`}
-                      className="w-[60%] h-[60%] object-contain"
-                    />
-                  </div>
-                  <div
-                    className="flex-1 text-[#dcdcdc] text-xl max-w-full overflow-x-scroll message whitespace-pre-wrap"
-                    id={item.id}
-                    ref={resRef}
-                  >
-                    {item.name}
-                  </div>
-                </div>
-              </div>
-            )}
-            {/* Loading */}
-            <div
-              className={`${
-                loading == false ? "!hidden" : "last-of-type:!block"
-              } hidden w-full max-w-[1280px] mx-auto`}
-            >
-              {loading && <Loader loading={loading} />}
-            </div>
-            {/* render response data here */}
-            {item.responseData !== "" && (
-              <>
-                <div className={`w-full p-[15px]`}>
+      <div className="flex-1 w-full h-full overflow-y-scroll flex flex-col gap-3 pb-5 scroll-smooth">
+        <ScrollableFeed>
+          {inputItems?.map((item) => (
+            <div key={item.id}>
+              {item.name !== "" && (
+                <div className={`w-full p-[15px] ${true && "bg-[#40414f]"}`}>
                   <div className="w-full max-w-[1280px] mx-auto flex flex-row items-start gap-[10px]">
-                    <div className="w-[36px] h-[36px] rounded-md bg-[#10a37f] flex justify-center items-center">
+                    <div className="w-[36px] h-[36px] rounded-md bg-[#5436da] flex justify-center items-center">
                       <img
-                        src="assets/user.svg"
-                        alt={`${"user"}`}
+                        src="assets/bot.svg"
+                        alt={`"bot"`}
                         className="w-[60%] h-[60%] object-contain"
                       />
                     </div>
                     <div
-                      className="flex-1 text-[#dcdcdc] text-xl max-w-full overflow-x-scroll message whitespace-pre-wrap"
+                      className="flex-1 text-[#dcdcdc] text-xl max-w-full overflow-x-scroll whitespace-pre-wrap"
                       id={item.id}
+                      ref={resRef}
                     >
-                      {item.responseData}
+                      {item.name}
                     </div>
                   </div>
                 </div>
-              </>
-            )}
-          </div>
-        ))}
+              )}
+              {/* Loading */}
+              <div
+                className={`${
+                  loading == false ? "!hidden" : "last-of-type:!block"
+                } hidden w-full max-w-[1280px] mx-auto`}
+              >
+                {loading && <Loader loading={loading} />}
+              </div>
+              {/* render response data here */}
+              {item.responseData !== "" && (
+                <>
+                  <div className={`w-full p-[15px]`}>
+                    <div className="w-full max-w-[1280px] mx-auto flex flex-row items-start gap-[10px]">
+                      <div className="w-[36px] h-[36px] rounded-md bg-[#10a37f] flex justify-center items-center">
+                        <img
+                          src="assets/user.svg"
+                          alt={`${"user"}`}
+                          className="w-[60%] h-[60%] object-contain"
+                        />
+                      </div>
+                      <div
+                        className="flex-1 text-[#dcdcdc] text-xl max-w-full overflow-x-scroll whitespace-pre-wrap"
+                        id={item.id}
+                      >
+                        {item.responseData}
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          ))}
+          <div ref={messagesEndRef} />
+        </ScrollableFeed>
         {/* Scroll Div */}
-        <div ref={messagesEndRef} />
       </div>
       {/* from */}
       <form
