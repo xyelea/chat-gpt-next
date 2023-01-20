@@ -91,7 +91,7 @@ export default function Home() {
             <div key={item.id}>
               {item.name !== "" && (
                 <div className={`w-full p-[15px] ${true && "bg-[#40414f]"}`}>
-                  <div className="w-full max-w-[1280px] mx-auto flex flex-row items-start gap-[10px]">
+                  <div className="w-full max-w-7xl   mx-auto flex flex-row items-start gap-[10px]">
                     <div className="w-[36px] h-[36px] rounded-md bg-[#5436da] flex justify-center items-center">
                       <img
                         src="assets/bot.svg"
@@ -100,10 +100,9 @@ export default function Home() {
                       />
                     </div>
                     <div
-                      className="flex-1 text-[#dcdcdc] text-xl max-w-full overflow-x-scroll whitespace-pre-wrap"
+                      className="flex-1 text-[#dcdcdc] text-xl max-w-full  whitespace-pre-wrap"
                       id={item.id}
-                      ref={resRef}
-                    >
+                      ref={resRef}>
                       {item.name}
                     </div>
                   </div>
@@ -113,8 +112,7 @@ export default function Home() {
               <div
                 className={`${
                   loading == false ? "!hidden" : "last-of-type:!block"
-                } hidden w-full max-w-[1280px] mx-auto`}
-              >
+                } hidden w-full max-w-[1280px] mx-auto`}>
                 {loading && <Loader loading={loading} />}
               </div>
               {/* render response data here */}
@@ -130,9 +128,8 @@ export default function Home() {
                         />
                       </div>
                       <div
-                        className="flex-1 text-[#dcdcdc] text-xl max-w-full overflow-x-scroll whitespace-pre-wrap"
-                        id={item.id}
-                      >
+                        className="flex-1 text-[#dcdcdc] text-xl max-w-full  whitespace-pre-wrap"
+                        id={item.id}>
                         {item.responseData}
                       </div>
                     </div>
@@ -148,8 +145,7 @@ export default function Home() {
       {/* from */}
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-[1280px] mx-auto p-[10px] rounded-lg bg-[#40414F] flex flex-row gap-3"
-      >
+        className="w-full max-w-[1280px] mx-auto p-[10px] rounded-lg bg-[#40414F] flex flex-row gap-3">
         <input
           onChange={(e) => setInputValue(e.target.value)}
           className="w-full text-[18px] text-white p-[10px] bg-transparent border-none outline-none"
@@ -161,8 +157,7 @@ export default function Home() {
         />
         <button
           type="submit"
-          className="border-none outline-none cursor-pointer bg-transparent"
-        >
+          className="border-none outline-none cursor-pointer bg-transparent">
           <img src="assets/send.svg" alt="send" className="w-[30px] h-[30px]" />
         </button>
       </form>
